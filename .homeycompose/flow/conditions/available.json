@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Pi !{{can|can not}} be reached",
+    "nl": "Pi !{{is|is niet}} bereikbaar"
+  },
+  "hint": {
+    "en": "Checks if Raspberry Pi can he reached.",
+    "nl": "Checks of the Pi bereikbaar is."
+  }
+}

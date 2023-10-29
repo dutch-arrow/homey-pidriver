@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "title": "Server Configuratie"
+  },
+  "pair": {
+    "title": "Server Configuratie",
+    "devname": "Apparaat naam",
+    "ipaddress": "IP adres van server",
+    "save": "Maak apparaat",
+    "required": "Waarde is verplicht"
+  }
+}

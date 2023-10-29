@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "title": "Server Settings Page"
+  },
+  "pair": {
+    "title": "Server Settings Page",
+    "devname": "Name of the device",
+    "ipaddress": "IP address of server",
+    "save": "Create device",
+    "required": "Value is required"
+  }
+}

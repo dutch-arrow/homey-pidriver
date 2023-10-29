@@ -1,0 +1,19 @@
+{
+  "title": {
+    "en": "Send data to Pi",
+    "nl": "Stuur data naar Pi"
+  },
+  "titleFormatted": {
+    "en": "Send '[[data]]' to Pi",
+    "nl": "Stuur '[[data]]' naar Pi"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "data",
+      "placeholder": {
+        "en": "data"
+      }
+    }
+  ]
+}

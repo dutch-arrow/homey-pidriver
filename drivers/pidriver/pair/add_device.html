@@ -1,0 +1,74 @@
+<header class="homey-header">
+  <h1 class="homey-title" data-i18n="pair.title">
+    <!-- This will be filled with the translated string with key 'settings.title'. -->
+  </h1>
+</header>
+<form class="homey-form">
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="devname"><span data-i18n="pair.devname"></span></label>
+    <input class="homey-form-input" id="devname" type="text" value=""/>
+  </div>
+  <div class="homey-form-group">
+    <label class="homey-form-label" for="ipaddress"><span data-i18n="pair.ipaddress"></span></label>
+    <input class="homey-form-input" id="ipaddress" type="text" placeholder="0.0.0.0" value=""/>
+  </div>
+  <button class="homey-button-primary" id="validate"><span data-i18n="pair.save"></span>
+  </button>
+</form>
+<p class="err-msg" style="color: #ff6300;">
+</p>
+<script type="application/javascript">
+  Homey.on("add_device_event", function (data) {
+    console.log(data); // Hello to you!
+    Homey.setTitle(Homey.__("pair.title"));
+    return {message: "Hi!"}; // send a reply back to the pairing session
+
+    // you can return a promise if you need to do some async
+    // work before replying to the message.
+  });
+  $(function() {
+      $('#validate').click(function() {
+        // variables
+        var deviceId = document.getElementById('devname').value;
+        var IPKey = document.getElementById('ipaddress').value;
+        // Device name is required
+        if (deviceId == "") {
+          // Give error, required values
+          Homey.alert(__('pair.required'), 'error');
+          return;
+        }
+        // IPKey is required
+        if (IPKey == "") {
+          // Give error, required values
+          Homey.alert(__('pair.required'), 'error');
+          return;
+        }
+
+        Homey.emit('validate', {
+          id: deviceId,
+          ipkey: IPKey
+        }, function(err, result) {
+          if (!err) {
+            var device_data = {
+              data: {
+                  id: deviceId,
+                  ipkey: IPKey
+              },
+              name: deviceId
+            };
+            Homey.createDevice({
+              data: device_data.data,
+              name: device_data.name,
+              settings: device_data.data,
+            }, function(err, result) {
+              if (err) return Homey.alert(err.message || err.toString());
+              Homey.emit('get_devices', device_data, function(err, result) {
+                if (err) return Homey.alert(err.message || err.toString());
+                Homey.done();
+              })
+            })
+          }
+        })
+    });
+  })
+</script>
